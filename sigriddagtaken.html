@@ -48,7 +48,21 @@ function escapeHTML(text) {
 
 function fillSelect() {
   const select = document.getElementById('taskSelect');
-  select.innerHTML = tasks.map((task, index) => `<option value="${index}">${escapeHTML(task.title)}</option>`).join('');
+  select.innerHTML =
+    '<option value="" selected>Kies hierboven een dagtaak</option>' +
+    tasks.map((task, index) => `<option value="${index}">${escapeHTML(task.title)}</option>`).join('');
+}
+
+function showIntroduction() {
+  currentTask = null;
+  currentStep = 0;
+  document.getElementById('stepMenu').innerHTML = '';
+  document.getElementById('contentPanel').innerHTML = `
+    <h2>Kies eerst een dagtaak</h2>
+    <p>De dagtaken staan hierboven in het keuzemenu. Kies daar de taak waarmee je wilt beginnen. Daarna verschijnen links de bijbehorende stappen.</p>
+    <p class="info"><strong>Hulpbestanden:</strong> gebruik de knop <strong>Hulpbestanden</strong> rechtsboven. Daar vind je bestanden, formats en hulpmiddelen die je bij de dagtaken nodig kunt hebben.</p>
+    <p>Bekijk de hulpbestanden voordat je start en controleer bij elke dagtaak of er een bestand of format voor je klaarstaat.</p>
+  `;
 }
 
 function menuLabel(section) {
@@ -161,6 +175,10 @@ function makeMenuLabels(task) {
 }
 
 function loadTask(index) {
+  if (index === '' || index === null || typeof index === 'undefined') {
+    showIntroduction();
+    return;
+  }
   currentTask = Number(index);
   currentStep = 0;
   const menu = document.getElementById('stepMenu');
@@ -255,7 +273,7 @@ function loadStep(index) {
 }
 
 fillSelect();
-loadTask(0);
+showIntroduction();
 </script>
 </body>
 </html>

@@ -513,6 +513,13 @@ body[data-page] .chips span {
   white-space: nowrap;
 }
 
+/* Beroepsproject: compacte ellipsen zodat ze op één regel passen. */
+body[data-page="beroepsproject"] .chips { gap: 5px; margin-top: 7px; }
+body[data-page="beroepsproject"] .chips span {
+  padding: 4px 8px;
+  font-size: clamp(10px, 0.94vw, 12px);
+}
+
 body[data-page] .tab-page {
   display: flex;
   gap: 14px;
@@ -560,6 +567,11 @@ body[data-page] .tab-content-area {
   color: #24343a;
   backdrop-filter: blur(2px);
 }
+
+/* Zelfbeoordeling: maak ruimte onder de ellipsen. */
+body[data-page="zelfbeoordeling"] .banner { height: 31%; }
+body[data-page="zelfbeoordeling"] .tab-page { height: 69%; }
+body[data-page="zelfbeoordeling"] .tab-content-area { overflow-y: hidden; }
 
 body[data-page] .tab-content { display: none; }
 body[data-page] .tab-content.active { display: block; }
@@ -633,7 +645,11 @@ body[data-page="dagtaken"] .helper-row {
 }
 
 body[data-page="dagtaken"] .banner-text { flex: 0 0 auto; }
-body[data-page="dagtaken"] .task-picker { flex: 1 1 auto; min-width: 260px; }
+body[data-page="dagtaken"] .task-picker {
+  flex: 0 0 280px;
+  min-width: 0;
+  margin-right: 56px;
+}
 body[data-page="dagtaken"] .task-picker select {
   width: 100%;
   padding: 9px 14px;
@@ -670,7 +686,7 @@ body[data-page="beroepsproject"] .banner-caption { position: absolute; right: 0;
   body[data-page="dagtaken"] .banner { height: 30%; }
   body[data-page="dagtaken"] .tab-page { height: 70%; }
   body[data-page="dagtaken"] .banner-row { align-items: flex-start; flex-direction: column; gap: 5px; }
-  body[data-page="dagtaken"] .task-picker { width: 100%; min-width: 0; }
+  body[data-page="dagtaken"] .task-picker { flex: 1 1 auto; width: 100%; min-width: 0; margin-right: 0; }
   body[data-page="dagtaken"] .helper-row .chips { display: none; }
   body[data-page="beroepsproject"] .banner-image-link { display: none; }
 }
