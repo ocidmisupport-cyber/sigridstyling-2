@@ -276,7 +276,13 @@ body {
     linear-gradient(145deg, #080a0d 0%, #171b1f 52%, #2c211b 100%);
 }
 
-.menu-page .page-shell { transform: translateY(18px); }
+.menu-page .page-shell {
+  transform: translateY(18px);
+  background:
+    radial-gradient(ellipse at -8% 72%, rgb(210 101 42 / 0.68), transparent 46%),
+    radial-gradient(ellipse at 106% 12%, rgb(248 203 175 / 0.68), transparent 46%),
+    linear-gradient(105deg, var(--kleur-04) 0%, var(--kleur-01) 42%, var(--kleur-03) 68%, var(--kleur-02) 100%);
+}
 
 /* =================================================================
    Fotopagina: de foto opent het menu in een halfdoorzichtige popup.
@@ -646,7 +652,7 @@ body[data-page="dagtaken"] .helper-row {
 
 body[data-page="dagtaken"] .banner-text { flex: 0 0 auto; }
 body[data-page="dagtaken"] .task-picker {
-  flex: 0 0 400px;
+  flex: 0 0 340px;
   min-width: 0;
   margin-right: 56px;
 }
