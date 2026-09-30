@@ -264,25 +264,27 @@ body {
 /* Extra ruimte tussen Beroepsproject en Zelfbeoordeling. */
 .self-review-card { margin-top: 18px; }
 
-/* Alleen het menu in het nieuwe tabblad staat iets lager.
-   Buiten het menu: zachte antraciete achtergrond met een warme oranje gloed. */
-.menu-page {
+/*
+   Menuachtergrond: alle lagen gebruiken alleen kleur 01 t/m 04.
+   Pas de vier kleurvariabelen bovenaan aan om het hele verloop te wijzigen.
+*/
+.menu-page,
+.menu-page .page-shell {
   min-height: 100vh;
   background:
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px 72px),
-    linear-gradient(0deg, rgba(255,255,255,0.018) 1px, transparent 1px 72px),
-    radial-gradient(ellipse at 12% 4%, rgb(255 153 110 / 0.18), transparent 38%),
-    radial-gradient(ellipse at 88% 96%, rgb(210 101 42 / 0.20), transparent 42%),
-    linear-gradient(145deg, #080a0d 0%, #171b1f 52%, #2c211b 100%);
+    radial-gradient(145% 140% at 104% 40%, transparent 0 48%, color-mix(in srgb, var(--kleur-02) 66%, transparent) 48.4% 60%, transparent 60.4%),
+    radial-gradient(118% 150% at -10% 105%, transparent 0 40%, color-mix(in srgb, var(--kleur-03) 48%, transparent) 40.4% 51%, transparent 51.4%),
+    radial-gradient(120% 145% at -8% -30%, transparent 0 43%, color-mix(in srgb, var(--kleur-04) 58%, transparent) 43.4% 55%, transparent 55.4%),
+    linear-gradient(105deg, var(--kleur-04) 0%, var(--kleur-01) 42%, var(--kleur-03) 68%, var(--kleur-02) 100%);
 }
 
 .menu-page .page-shell {
   transform: translateY(18px);
-  background:
-    radial-gradient(ellipse at -8% 72%, rgb(210 101 42 / 0.68), transparent 46%),
-    radial-gradient(ellipse at 106% 12%, rgb(248 203 175 / 0.68), transparent 46%),
-    linear-gradient(105deg, var(--kleur-04) 0%, var(--kleur-01) 42%, var(--kleur-03) 68%, var(--kleur-02) 100%);
+  min-height: 0;
+  box-shadow: none;
 }
+
+.menu-page .page-shell::before { background: none; }
 
 /* =================================================================
    Fotopagina: de foto opent het menu in een halfdoorzichtige popup.
