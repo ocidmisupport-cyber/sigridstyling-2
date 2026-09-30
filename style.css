@@ -279,7 +279,7 @@ body {
 }
 
 .menu-page .page-shell {
-  transform: translateY(18px);
+  transform: translateY(9px);
   min-height: 0;
   box-shadow: none;
 }
