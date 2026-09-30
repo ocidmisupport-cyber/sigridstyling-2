@@ -9,19 +9,19 @@
      Kleurverlopen en transparantie worden van deze vier afgeleid.
      ============================================================= */
 
-  /* Kleur 01 – hoofdkleur: #FF5900 */
+  /* Kleur 01 – hoofdkleur:  */
   --kleur-01: #FF5900;
   --kleur-01-rgb: 255 89 0;
 
-  /* Kleur 02 – lichte achtergrondkleur: #F8CBAF */
+  /* Kleur 02 – lichte achtergrondkleur: */
   --kleur-02: #F8CBAF;
   --kleur-02-rgb: 248 203 175;
 
-  /* Kleur 03 – licht accent: #FF996E */
+  /* Kleur 03 – licht accent: */
   --kleur-03: #FF996E;
   --kleur-03-rgb: 255 153 110;
 
-  /* Kleur 04 – donker accent en tekstkleur: #D2652A */
+  /* Kleur 04 – donker accent en tekstkleur:  */
   --kleur-04: #D2652A;
   --kleur-04-rgb: 210 101 42;
 
