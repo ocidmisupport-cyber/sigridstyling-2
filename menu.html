@@ -271,6 +271,65 @@
       margin-top: 12px;
     }
 
+    /* Pop-up voor de vier gekoppelde Canvas-pagina's. */
+    .page-modal {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5vh 2.5vw;
+      background: rgba(0, 0, 0, 0.30);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+
+    .page-modal.is-open { display: flex; }
+
+    .page-modal__window {
+      position: relative;
+      width: 95vw;
+      height: 95vh;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.52);
+    }
+
+    .page-modal__frame {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+    }
+
+    .page-modal__close {
+      position: absolute;
+      z-index: 2;
+      top: 12px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.86);
+      border-radius: 50%;
+      background: rgba(16, 24, 40, 0.82);
+      color: #fff;
+      font-size: 27px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.32);
+    }
+
+    .page-modal__close:hover,
+    .page-modal__close:focus-visible {
+      background: var(--teraa-orange);
+      outline: 3px solid rgba(255, 255, 255, 0.72);
+      outline-offset: 2px;
+    }
+
     @media (max-width: 760px) {
       body { overflow: auto; }
       .page-shell {
@@ -317,7 +376,7 @@
         <div class="section-heading">Wat ga je doen?</div>
 
         <div class="action-list">
-          <a class="action-card" href="https://teraa-canvas.instructure.com/courses/930/pages/sigridcomptia?module_item_id=13072" target="_top" rel="noopener" aria-label="Open CompTIA A+">
+          <a class="action-card popup-link" href="https://teraa-canvas.instructure.com/courses/930/pages/sigridcomptia?module_item_id=13072" aria-label="Open CompTIA A+">
             <div class="icon-box" aria-hidden="true">A+</div>
             <div>
               <h2 class="action-title">CompTIA A+</h2>
@@ -326,7 +385,7 @@
             <div class="arrow" aria-hidden="true">→</div>
           </a>
 
-          <a class="action-card" href="https://teraa-canvas.instructure.com/courses/930/pages/sigriddagtaken?module_item_id=13073" target="_top" rel="noopener" aria-label="Open Dagtaken">
+          <a class="action-card popup-link" href="https://teraa-canvas.instructure.com/courses/930/pages/sigriddagtaken?module_item_id=13073" aria-label="Open Dagtaken">
             <div class="icon-box" aria-hidden="true">✓</div>
             <div>
               <h2 class="action-title">Dagtaken</h2>
@@ -338,7 +397,7 @@
 
         <div class="section-heading">Afsluiting</div>
 
-        <a class="action-card project-card" href="https://teraa-canvas.instructure.com/courses/930/pages/comptia?module_item_id=13074" target="_top" rel="noopener" aria-label="Open Beroepsproject Sigrid Styling">
+        <a class="action-card project-card popup-link" href="https://teraa-canvas.instructure.com/courses/930/pages/comptia?module_item_id=13074" aria-label="Open Beroepsproject Sigrid Styling">
           <div class="icon-box" aria-hidden="true">🏆</div>
           <div>
             <h2 class="action-title">Beroepsproject Sigrid Styling</h2>
@@ -347,7 +406,7 @@
           <div class="arrow" aria-hidden="true">→</div>
         </a>
 
-        <a class="action-card self-review-card" href="https://teraa-canvas.instructure.com/courses/930/modules/items/13075" target="_top" aria-label="Open Zelfbeoordeling">
+        <a class="action-card self-review-card popup-link" href="https://teraa-canvas.instructure.com/courses/930/modules/items/13075" aria-label="Open Zelfbeoordeling">
           <div class="icon-box" aria-hidden="true">★</div>
           <div>
             <h2 class="action-title">Zelfbeoordeling</h2>
@@ -358,5 +417,42 @@
       </aside>
     </section>
   </main>
+
+  <div class="page-modal" id="pageModal" aria-hidden="true">
+    <section class="page-modal__window" role="dialog" aria-modal="true" aria-label="Lespagina">
+      <button class="page-modal__close" type="button" aria-label="Sluit pagina">×</button>
+      <iframe class="page-modal__frame" title="Lespagina" src="about:blank"></iframe>
+    </section>
+  </div>
+
+  <script>
+    const modal = document.getElementById('pageModal');
+    const modalFrame = modal.querySelector('.page-modal__frame');
+    const closeButton = modal.querySelector('.page-modal__close');
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalFrame.src = 'about:blank';
+    }
+
+    document.querySelectorAll('.popup-link').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        modalFrame.src = link.href;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        closeButton.focus();
+      });
+    });
+
+    closeButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+  </script>
 </body>
 </html>
