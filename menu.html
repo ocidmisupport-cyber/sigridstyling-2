@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sigrid Styling - Menu</title>
+  <title>Sigrid Styling - Startpagina</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="page-shell" aria-label="Menu Sigrid Styling">
+  <main class="page-shell" aria-label="Startpagina Sigrid Styling">
     <section class="content-grid">
       <div class="left-column">
         <article class="glass-card assignment-card">
@@ -99,7 +99,7 @@
     document.querySelectorAll('.popup-link').forEach((link) => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
-        modalFrame.src = link.href;
+        modalFrame.src = link.getAttribute('href');
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         closeButton.focus();
